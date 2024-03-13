@@ -14,8 +14,6 @@ function signup() {
   var mobile = document.getElementById("mobile");
   var gender = document.getElementById("gender");
 
-  alert(fname.value);
-  alert(lname.value);
 
   var form = new FormData();
 
