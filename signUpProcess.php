@@ -38,7 +38,15 @@ if (empty($fname)) {
     if ($n > 0) {
         echo ("User with the same Email Address or Mobile Number already exists");
     } else {
-        
+       $d = new DateTime();
+       $tz = new DateTimeZone("Asia/Colombo");
+       $d->setTimezone($tz);
+       $date= $d->format("Y-m-d H:i:s");
+
+       Database::iud("INSERT INTO `user`(`fname`,`lname`,`email`,`password`,`mobile`,`joined_date`,`status`,`gender_id`) VALUES 
+       ('".$fname."','".$lname."','".$email."','".$password."','".$mobile."','".$date."','1','".$gender."')");
+
+        echo("Success");
     }
 }
 
