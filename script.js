@@ -14,7 +14,6 @@ function signup() {
   var mobile = document.getElementById("mobile");
   var gender = document.getElementById("gender");
 
-
   var form = new FormData();
 
   form.append("f", fname.value);
@@ -29,7 +28,15 @@ function signup() {
   request.onreadystatechange = function () {
     if (request.status == 200 && request.readyState == 4) {
       var response = request.responseText;
-      alert(response);
+
+      if (response == "Success") {
+        document.getElementById("msg").innerHTML = "Registration success !";
+        document.getElementById("msg").className = "alert alert-success";
+        document.getElementById("msgdiv").className = "d-block";
+      } else {
+        document.getElementById("msg").innerHTML = response;
+        document.getElementById("msgdiv").className = "d-block";
+      }
     }
   };
 
