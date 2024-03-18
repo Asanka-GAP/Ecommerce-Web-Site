@@ -123,13 +123,34 @@
                                 <p class="title02">Sign In</p>
                             </div>
 
+                            <div class="col-12 d-none" id="msgdiv2">
+                                <div class="alert alert-danger" role="alert" id="msg2">
+
+                                </div>
+                            </div>
+
+                                    <?php
+                                        $email = "";
+                                        $password = "";
+
+                                        if (isset($_COOKIE["email"])) {
+                                            $email = $_COOKIE["email"];
+
+                                        }
+                                        if (isset($_COOKIE["password"])) {
+                                            $password = $_COOKIE["password"];
+                                            
+                                        }
+
+                                    ?>
+
                             <div class="col-12">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email2" value="" />
+                                <input type="email" class="form-control" id="email2" value="<?php echo $email; ?>" />
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password2" value="" />
+                                <input type="password" class="form-control" id="password2" value="<?php echo $password; ?>" />
                             </div>
                             <div class="col-6">
                                 <div class="form-check">
