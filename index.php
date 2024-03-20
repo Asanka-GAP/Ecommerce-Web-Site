@@ -181,15 +181,40 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Modal title</h5>
+                            <h5 class="modal-title">Forgot Password</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Modal body text goes here.</p>
+                            <div class="row g-3">
+
+                                <div class="col-6">
+                                    <label class="form-label">New Password</label>
+                                    <div class="input-group mb-3">
+                                        <input type="password" class="form-control"/>
+                                        <button class="btn btn-outline-secondary">Show</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <label class="form-label">Re-Type New Password</label>
+                                    <div class="input-group mb-3">
+                                        <input type="password" class="form-control"/>
+                                        <button class="btn btn-outline-secondary">Show</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label">Verification Code</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control"/>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Reset</button>
                         </div>
                     </div>
                 </div>

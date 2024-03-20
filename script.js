@@ -65,7 +65,6 @@ function signin() {
         document.getElementById("msgdiv2").className = "d-block";
 
         window.location = "home.php";
-
       } else {
         document.getElementById("msg2").innerHTML = response;
         document.getElementById("msgdiv2").className = "d-block";
@@ -78,25 +77,27 @@ function signin() {
 }
 
 var forgotPasswordmodal;
-function forgotPassword(){
-
-  
-  // var modal = document.getElementById("fpmodal");
-  // forgotPasswordmodal = new bootstrap.Modal(modal);
-  // forgotPasswordmodal.show();
-  
+function forgotPassword() {
   var email = document.getElementById("email2").value;
 
   var request = new XMLHttpRequest();
 
-  request.onreadystatechange = function(){
+  request.onreadystatechange = function () {
     if (request.status == 200 && request.readyState == 4) {
       var response = request.responseText;
-      alert(response);
+      if (response == "success") {
+        alert("Email sent Successfully. Check your Inbox.");
+        var modal = document.getElementById("fpmodal");
+        forgotPasswordmodal = new bootstrap.Modal(modal);
+        forgotPasswordmodal.show();
+      }else{
+        document.getElementById("msg2").innerHTML = response;
+        document.getElementById("msgdiv2").className = "d-block";
+        
+      }
     }
-  }
+  };
 
-  request.open("GET","forgotPasswordProcess.php?e="+email,true);
+  request.open("GET", "forgotPasswordProcess.php?e=" + email, true);
   request.send();
-
 }
