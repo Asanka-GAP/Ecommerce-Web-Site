@@ -76,3 +76,27 @@ function signin() {
   request.open("POST", "signinProcess.php", true);
   request.send(form);
 }
+
+var forgotPasswordmodal;
+function forgotPassword(){
+
+  
+  // var modal = document.getElementById("fpmodal");
+  // forgotPasswordmodal = new bootstrap.Modal(modal);
+  // forgotPasswordmodal.show();
+  
+  var email = document.getElementById("email2").value;
+
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function(){
+    if (request.status == 200 && request.readyState == 4) {
+      var response = request.responseText;
+      alert(response);
+    }
+  }
+
+  request.open("GET","forgotPasswordProcess.php?e="+email,true);
+  request.send();
+
+}
