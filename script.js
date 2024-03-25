@@ -36,6 +36,7 @@ function signup() {
       } else {
         document.getElementById("msg").innerHTML = response;
         document.getElementById("msgdiv").className = "d-block";
+        swal ("Error",response,"error");
       }
     }
   };
