@@ -101,3 +101,66 @@ function forgotPassword() {
   request.open("GET", "forgotPasswordProcess.php?e=" + email, true);
   request.send();
 }
+
+function showPassword(){
+  var textfield = document.getElementById("np");
+  var button = document.getElementById("rnb");
+
+  if (textfield.type == "password") {
+    textfield.type = "text";
+    button.innerHTML = "Hide";
+
+
+  }else{
+    textfield.type ="password";
+    button.innerHTML= "Show";
+  }
+}
+
+function showPassword2(){
+  var textfield = document.getElementById("rnp");
+  var button = document.getElementById("rnbp");
+
+  if (textfield.type == "password") {
+    textfield.type = "text";
+    button.innerHTML = "Hide";
+
+
+  }else{
+    textfield.type ="password";
+    button.innerHTML= "Show";
+  }
+}
+
+function resetPassword(){
+  var email = document.getElementById("email2");
+  var newpassword = document.getElementById("np");
+  var retypepassword = document.getElementById("rnp");
+  var verificationcode = document.getElementById("vcode");
+
+  var form = new FormData();
+
+  form.append("e",email.value);
+  form.append("n",newpassword.value);
+  form.append("r",retypepassword.value);
+  form.append("v",verificationcode.value);
+  
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function (){
+    if (request.status == 200 && request.readyState ==4) {
+      var response = request.responseText;
+
+      if (response == "success") {
+        alert("Password updated successfully.");
+        forgotPasswordmodal.hide();
+      }else{
+      alert(response);
+      }
+    }
+  }
+
+  request.open("POST","resetPasswordProcess.php",true);
+  request.send(form);
+
+}

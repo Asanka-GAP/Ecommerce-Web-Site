@@ -190,23 +190,23 @@
                                 <div class="col-6">
                                     <label class="form-label">New Password</label>
                                     <div class="input-group mb-3">
-                                        <input type="password" class="form-control"/>
-                                        <button class="btn btn-outline-secondary">Show</button>
+                                        <input type="password" id="np" class="form-control"/>
+                                        <button class="btn btn-outline-secondary" id="rnb" onclick="showPassword();">Show</button>
                                     </div>
                                 </div>
 
                                 <div class="col-6">
                                     <label class="form-label">Re-Type New Password</label>
                                     <div class="input-group mb-3">
-                                        <input type="password" class="form-control"/>
-                                        <button class="btn btn-outline-secondary">Show</button>
+                                        <input type="password" id="rnp" class="form-control"/>
+                                        <button class="btn btn-outline-secondary" id="rnbp" onclick="showPassword2();">Show</button>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <label class="form-label">Verification Code</label>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control"/>
+                                        <input type="text" class="form-control" id="vcode"/>
                                     </div>
                                 </div>
                                 
@@ -214,7 +214,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Reset</button>
+                            <button type="button" class="btn btn-primary" onclick="resetPassword();">Reset</button>
                         </div>
                     </div>
                 </div>
