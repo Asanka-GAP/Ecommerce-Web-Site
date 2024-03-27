@@ -173,6 +173,11 @@ function signout(){
   request.onreadystatechange = function (){
     if (request.status == 200 && request.readyState == 4) {
       var response = request.responseText;
+
+      if (this.responseText == "success") {
+        window.location.reload();
+      }
+
       alert(response);
     }
   }
