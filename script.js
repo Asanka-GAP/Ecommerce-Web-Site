@@ -166,3 +166,17 @@ function resetPassword(){
   request.send(form);
 
 }
+
+function signout(){
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function (){
+    if (request.status == 200 && request.readyState == 4) {
+      var response = request.responseText;
+      alert(response);
+    }
+  }
+
+  request.open("GET","signoutProcess.php",true);
+  request.send();
+}
