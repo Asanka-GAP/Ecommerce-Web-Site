@@ -40,10 +40,29 @@
                                 <div class="col-md-3 border-end">
                                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 
-                                        <img src="resources/new_user.svg" class="rounded mt-5" style="width: 150px;" />
+                                        <?php
 
-                                        <span class="fw-bold"><?php echo $_SESSION["u"]["fname"]?></span>
-                                        <span class="fw-bold text-black-50"><?php echo $email?></span>
+                                        $img_rs = Database::search("SELECT * FROM `profile_img` WHERE `user_email` = '" . $email . "'");
+                                        $img_data = $img_rs->fetch_assoc();
+
+                                        if (empty($img_data["path"])) {
+
+                                        ?>
+                                            <img src="resources/new_user.svg" class="rounded mt-5" style="width: 150px;" />
+
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <img src="<?php echo $img_data["path"] ?>" class="rounded mt-5" style="width: 150px;" />
+
+                                        <?php
+                                        }
+
+                                        ?>
+
+
+                                        <span class="fw-bold"><?php echo $_SESSION["u"]["fname"] . " " . $_SESSION["u"]["lname"] ?></span>
+                                        <span class="fw-bold text-black-50"><?php echo $email ?></span>
 
                                         <input type="file" class="d-none" id="profileimage" />
                                         <label for="profileimage" class="btn btn-primary mt-5">Update Profile Image</label>
@@ -62,23 +81,23 @@
 
                                             <div class="col-6">
                                                 <label class="form-label">First Name</label>
-                                                <input type="text" class="form-control" value="<?php echo $_SESSION["u"]["fname"]?>" />
+                                                <input type="text" class="form-control" value="<?php echo $_SESSION["u"]["fname"] ?>" />
                                             </div>
 
                                             <div class="col-6">
                                                 <label class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" value="<?php echo $_SESSION["u"]["lname"]?>" />
+                                                <input type="text" class="form-control" value="<?php echo $_SESSION["u"]["lname"] ?>" />
                                             </div>
 
                                             <div class="col-12">
                                                 <label class="form-label">Mobile</label>
-                                                <input type="text" class="form-control" value="<?php echo $_SESSION["u"]["mobile"]?>" />
+                                                <input type="text" class="form-control" value="<?php echo $_SESSION["u"]["mobile"] ?>" />
                                             </div>
 
                                             <div class="col-12">
                                                 <label class="form-label">Password</label>
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" value="<?php echo $_SESSION["u"]["password"]?>" readonly />
+                                                    <input type="password" class="form-control" value="<?php echo $_SESSION["u"]["password"] ?>" readonly />
                                                     <span class="input-group-text bg-primary" id="basic-addon2">
                                                         <i class="bi bi-eye-slash-fill text-white"></i>
                                                     </span>
@@ -87,12 +106,12 @@
 
                                             <div class="col-12">
                                                 <label class="form-label">Email</label>
-                                                <input type="text" class="form-control" readonly value="<?php echo $email?>" />
+                                                <input type="text" class="form-control" readonly value="<?php echo $email ?>" />
                                             </div>
 
                                             <div class="col-12">
                                                 <label class="form-label">Registered Date</label>
-                                                <input type="text" class="form-control" readonly value="<?php echo $_SESSION["u"]["joined_date"]?>" />
+                                                <input type="text" class="form-control" readonly value="<?php echo $_SESSION["u"]["joined_date"] ?>" />
                                             </div>
 
                                             <div class="col-12">
