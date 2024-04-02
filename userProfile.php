@@ -53,16 +53,15 @@
                                         <?php
                                         } else {
                                         ?>
-                                            <img src="<?php echo $img_data["path"] ?>" class="rounded mt-5" style="width: 150px;" />
+                                            <img src="<?php echo $img_data["path"]; ?>" class="rounded mt-5" style="width: 150px;" />
 
                                         <?php
                                         }
-
                                         ?>
 
 
-                                        <span class="fw-bold"><?php echo $_SESSION["u"]["fname"] . " " . $_SESSION["u"]["lname"] ?></span>
-                                        <span class="fw-bold text-black-50"><?php echo $email ?></span>
+                                        <span class="fw-bold"><?php echo $_SESSION["u"]["fname"] . " " . $_SESSION["u"]["lname"]; ?></span>
+                                        <span class="fw-bold text-black-50"><?php echo $email; ?></span>
 
                                         <input type="file" class="d-none" id="profileimage" />
                                         <label for="profileimage" class="btn btn-primary mt-5">Update Profile Image</label>
@@ -114,21 +113,81 @@
                                                 <input type="text" class="form-control" readonly value="<?php echo $_SESSION["u"]["joined_date"] ?>" />
                                             </div>
 
+                                            <?php
+
+                                            $address_rs = Database::search("SELECT * FROM `user_has_address` INNER JOIN `city` ON 
+                                            user_has_address.city_city_id=city.city_id INNER JOIN `district` ON 
+                                            city.district_district_id=district.district_id INNER JOIN `province` ON 
+                                            district.province_province_id=province.province_id WHERE `user_email`='" . $email . "'");
+
+                                            $address_data = $address_rs->fetch_assoc();
+
+
+
+                                            ?>
                                             <div class="col-12">
                                                 <label class="form-label">Address Line 01</label>
-                                                <input type="text" class="form-control" />
+                                                <?php
+                                                if (empty($address_data["line1"])) {
+                                                ?>
+                                                    <input type="text" class="form-control" />
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <input type="text" class="form-control" value="<?php echo $address_data["line1"]; ?>" />
+                                                <?php
+                                                }
+                                                ?>
+
                                             </div>
+
+
 
                                             <div class="col-12">
                                                 <label class="form-label">Address Line 02</label>
-                                                <input type="text" class="form-control" />
+
+                                                <?php
+                                                if (empty($address_data["line2"])) {
+                                                ?>
+                                                    <input type="text" class="form-control" />
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <input type="text" class="form-control" value="<?php echo $address_data["line2"]; ?>" />
+                                                <?php
+                                                }
+                                                ?>
+
                                             </div>
+                                            <?php
+
+                                            $province_rs = Database::search("SELECT * FROM `province`");
+                                            $district_rs = Database::search("SELECT * FROM `district`");
+                                            $city_rs = Database::search("SELECT * FROM `city`");
+
+                                            ?>
 
                                             <div class="col-6">
                                                 <label class="form-label">Province</label>
                                                 <select class="form-select">
                                                     <option value="0">Select Province</option>
-                                                    <option value="1">Colombo</option>
+                                                    <?php
+                                                    for ($i = 0; $i < $province_rs->num_rows; $i++) {
+                                                        $province_data = $province_rs->fetch_assoc();
+                                                    ?>
+                                                        <option value="<?php echo $province_data["province_id"]; ?>" <?php
+                                                        if(!empty($address_data["province_id"])){
+                                                            if($address_data["province_id"] == $province_data["province_id"]){
+                                                                ?>selected<?php
+                                                            }
+                                                        }
+                                                        ?>>
+                                                            <?php echo $province_data["province_name"]; ?>
+                                                        </option>
+                                                    <?php
+                                                    }
+                                                    ?>
+
                                                 </select>
                                             </div>
 
@@ -136,8 +195,22 @@
                                                 <label class="form-label">District</label>
                                                 <select class="form-select">
                                                     <option value="0">Select District</option>
-                                                    <option value="1">Kaluthara</option>
-
+                                                    <?php
+                                                    for ($i = 0; $i < $district_rs->num_rows; $i++) {
+                                                        $district_data = $district_rs->fetch_assoc();
+                                                    ?>
+                                                        <option value="<?php echo $district_data["district_id"]; ?>" <?php
+                                                        if(!empty($address_data["district_id"])){
+                                                            if($address_data["district_id"] == $district_data["district_id"]){
+                                                                ?>selected<?php
+                                                            }
+                                                        }
+                                                        ?>>
+                                                            <?php echo $district_data["district_name"]; ?>
+                                                        </option>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
 
@@ -145,19 +218,44 @@
                                                 <label class="form-label">City</label>
                                                 <select class="form-select">
                                                     <option value="0">Select City</option>
-                                                    <option value="1">Kaluthara</option>
-
+                                                    <?php
+                                                    for ($i = 0; $i < $city_rs->num_rows; $i++) {
+                                                        $city_data = $city_rs->fetch_assoc();
+                                                    ?>
+                                                        <option value="<?php echo $city_data["city_id"]; ?>" <?php
+                                                        if(!empty($address_data["city_id"])){
+                                                            if($address_data["city_id"] == $city_data["city_id"]){
+                                                                ?>selected<?php
+                                                            }
+                                                        }
+                                                        ?>>
+                                                            <?php echo $city_data["city_name"]; ?>
+                                                        </option>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
 
                                             <div class="col-6">
                                                 <label class="form-label">Postal Code</label>
-                                                <input type="text" class="form-control" />
+                                                <?php
+                                                if(empty($address_data["postal_code"])){
+                                                    ?><input type="text" class="form-control" /><?php
+                                                }else{
+                                                    ?><input type="text" class="form-control" value="<?php echo $address_data["postal_code"] ?>"/><?php
+                                                }
+                                                ?>
+                                                
                                             </div>
 
                                             <div class="col-12">
                                                 <label class="form-label">Gender</label>
-                                                <input type="text" class="form-control" value="Male" readonly />
+                                                <?php
+                                                $gender_rs = Database::search("SELECT * FROM `gender` WHERE `id`= '".$_SESSION["u"]["gender_id"]."'");
+                                                $gender_data = $gender_rs->fetch_assoc();
+                                                ?>
+                                                <input type="text" class="form-control" value="<?php echo $gender_data["gender_name"]; ?>" readonly />
                                             </div>
 
                                             <div class="col-12 d-grid mt-2">
