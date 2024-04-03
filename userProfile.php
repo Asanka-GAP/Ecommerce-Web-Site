@@ -48,12 +48,12 @@
                                         if (empty($img_data["path"])) {
 
                                         ?>
-                                            <img src="resources/new_user.svg" class="rounded mt-5" style="width: 150px;" />
+                                            <img src="resources/new_user.svg" id="img" class="rounded mt-5" style="width: 150px;" />
 
                                         <?php
                                         } else {
                                         ?>
-                                            <img src="<?php echo $img_data["path"]; ?>" class="rounded mt-5" style="width: 150px;" />
+                                            <img src="<?php echo $img_data["path"]; ?>" id="img" class="rounded mt-5" style="width: 150px;" />
 
                                         <?php
                                         }
@@ -64,7 +64,7 @@
                                         <span class="fw-bold text-black-50"><?php echo $email; ?></span>
 
                                         <input type="file" class="d-none" id="profileimage" />
-                                        <label for="profileimage" class="btn btn-primary mt-5">Update Profile Image</label>
+                                        <label for="profileimage" class="btn btn-primary mt-5" onclick="changeProfileImg();">Update Profile Image</label>
 
                                     </div>
                                 </div>
@@ -80,25 +80,25 @@
 
                                             <div class="col-6">
                                                 <label class="form-label">First Name</label>
-                                                <input type="text" class="form-control" value="<?php echo $_SESSION["u"]["fname"] ?>" />
+                                                <input type="text" id="fname" class="form-control" value="<?php echo $_SESSION["u"]["fname"] ?>" />
                                             </div>
 
                                             <div class="col-6">
                                                 <label class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" value="<?php echo $_SESSION["u"]["lname"] ?>" />
+                                                <input type="text" id="lname" class="form-control" value="<?php echo $_SESSION["u"]["lname"] ?>" />
                                             </div>
 
                                             <div class="col-12">
                                                 <label class="form-label">Mobile</label>
-                                                <input type="text" class="form-control" value="<?php echo $_SESSION["u"]["mobile"] ?>" />
+                                                <input type="text" id="mobile" class="form-control" value="<?php echo $_SESSION["u"]["mobile"] ?>" />
                                             </div>
 
                                             <div class="col-12">
                                                 <label class="form-label">Password</label>
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" value="<?php echo $_SESSION["u"]["password"] ?>" readonly />
-                                                    <span class="input-group-text bg-primary" id="basic-addon2">
-                                                        <i class="bi bi-eye-slash-fill text-white"></i>
+                                                    <input type="password" class="form-control" id="pf" value="<?php echo $_SESSION["u"]["password"] ?>" readonly />
+                                                    <span class="input-group-text bg-primary" id="basic-addon2" onclick="showPassword3();">
+                                                        <i class="bi bi-eye-slash-fill text-white" id="basic-addon2_i"></i>
                                                     </span>
                                                 </div>
                                             </div>
@@ -130,11 +130,11 @@
                                                 <?php
                                                 if (empty($address_data["line1"])) {
                                                 ?>
-                                                    <input type="text" class="form-control" />
+                                                    <input type="text" id="line1" class="form-control" />
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <input type="text" class="form-control" value="<?php echo $address_data["line1"]; ?>" />
+                                                    <input type="text" id="line1" class="form-control" value="<?php echo $address_data["line1"]; ?>" />
                                                 <?php
                                                 }
                                                 ?>
@@ -149,11 +149,11 @@
                                                 <?php
                                                 if (empty($address_data["line2"])) {
                                                 ?>
-                                                    <input type="text" class="form-control" />
+                                                    <input type="text" id="line2" class="form-control" />
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <input type="text" class="form-control" value="<?php echo $address_data["line2"]; ?>" />
+                                                    <input type="text" id="line2" class="form-control" value="<?php echo $address_data["line2"]; ?>" />
                                                 <?php
                                                 }
                                                 ?>
@@ -169,7 +169,7 @@
 
                                             <div class="col-6">
                                                 <label class="form-label">Province</label>
-                                                <select class="form-select">
+                                                <select class="form-select" id="province">
                                                     <option value="0">Select Province</option>
                                                     <?php
                                                     for ($i = 0; $i < $province_rs->num_rows; $i++) {
@@ -193,7 +193,7 @@
 
                                             <div class="col-6">
                                                 <label class="form-label">District</label>
-                                                <select class="form-select">
+                                                <select class="form-select" id="district">
                                                     <option value="0">Select District</option>
                                                     <?php
                                                     for ($i = 0; $i < $district_rs->num_rows; $i++) {
@@ -216,7 +216,7 @@
 
                                             <div class="col-6">
                                                 <label class="form-label">City</label>
-                                                <select class="form-select">
+                                                <select class="form-select" id="city">
                                                     <option value="0">Select City</option>
                                                     <?php
                                                     for ($i = 0; $i < $city_rs->num_rows; $i++) {
@@ -241,9 +241,9 @@
                                                 <label class="form-label">Postal Code</label>
                                                 <?php
                                                 if(empty($address_data["postal_code"])){
-                                                    ?><input type="text" class="form-control" /><?php
+                                                    ?><input type="text" id="pcode" class="form-control" /><?php
                                                 }else{
-                                                    ?><input type="text" class="form-control" value="<?php echo $address_data["postal_code"] ?>"/><?php
+                                                    ?><input type="text" id="pcode" class="form-control" value="<?php echo $address_data["postal_code"] ?>"/><?php
                                                 }
                                                 ?>
                                                 
@@ -259,7 +259,7 @@
                                             </div>
 
                                             <div class="col-12 d-grid mt-2">
-                                                <button class="btn btn-primary">Update My Profile</button>
+                                                <button class="btn btn-primary" onclick="updateProfile();">Update My Profile</button>
                                             </div>
 
                                         </div>

@@ -185,3 +185,47 @@ function signout(){
   request.open("GET","signoutProcess.php",true);
   request.send();
 }
+
+function showPassword3(){
+  var textfield = document.getElementById("pf");
+  var button = document.getElementById("basic-addon2_i");
+
+  if (textfield.type == "password") {
+    textfield.type = "text";
+    button.classList = "bi bi-eye-fill text-white";
+
+
+  }else{
+    textfield.type ="password";
+    button.classList="bi bi-eye-slash-fill text-white";
+  }
+}
+
+
+function changeProfileImg(){
+  var img = document.getElementById("profileimage");
+
+  img.onchange = function(){
+    var file = this.files[0];
+    var url = window.URL.createObjectURL(file);
+
+
+    document.getElementById("img").src = url;
+    
+
+  }
+}
+
+function updateProfile(){
+  var fname = document.getElementById("fname");
+  var lname = document.getElementById("lname");
+  var line1 = document.getElementById("line1");
+  var line2 = document.getElementById("line2");
+  var mobile = document.getElementById("mobile");
+  var province = document.getElementById("province");
+  var district = document.getElementById("district");
+  var city = document.getElementById("city");
+  var image = document.getElementById("profileimage");
+  
+  
+}
