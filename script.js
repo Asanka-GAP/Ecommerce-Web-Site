@@ -67,6 +67,7 @@ function signin() {
         document.getElementById("msgdiv2").className = "d-block";
 
         window.location = "home.php";
+        
       } else {
         document.getElementById("msg2").innerHTML = response;
         document.getElementById("msgdiv2").className = "d-block";
