@@ -225,7 +225,35 @@ function updateProfile(){
   var province = document.getElementById("province");
   var district = document.getElementById("district");
   var city = document.getElementById("city");
+  var pcode = document.getElementById("pcode");
   var image = document.getElementById("profileimage");
   
+  var form = new FormData();
+  form.append("f",fname.value);
+  form.append("l",lname.value);
+  form.append("m",mobile.value);
+  form.append("l1",line1.value);
+  form.append("l2",line2.value);
+  form.append("p",province.value);
+  form.append("c",city.value);
+  form.append("d",district.value);
+  form.append("pc",pcode.value);
+  form.append("i",image.files[0]);
+
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function(){
+    if(request.status==200 && request.readyState==4){
+      var response = request.responseText;
+      if(response == "updated" || response=="saved"){
+        window.location.reload();
+      }else{
+        alert(response);
+      }
+    }
+  }
+
+  request.open("POST","updateProfileProcess.php",true);
+  request.send(form);
   
 }
