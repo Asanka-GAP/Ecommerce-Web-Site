@@ -296,3 +296,22 @@ function loadmodels(){
   request.send();
 
 }
+
+function saveclr(){
+ 
+  var clr = document.getElementById("clr_input").value;
+
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function(){
+    if (request.status == 200 & request.readyState == 4) {
+      var response = request.responseText;
+      alert(response);
+    }
+  }
+
+
+  request.open("GET","saveClrProcess.php?clr="+clr,true);
+  request.send();
+
+}

@@ -157,7 +157,7 @@
                                             <div class="col-12">
 
                                                 <select class="col-12 form-select" id="clr">
-                                                    <option value="0">Select Colour</option>
+                                                    <option value="0">Select Color</option>
 
                                                     <?php
                                                         
@@ -185,8 +185,8 @@
                                             <div class="col-12">
                                                 <div class="input-group mt-2 mb-2">
                                                     <input type="text" class="form-control"
-                                                        placeholder="Add new Colour" />
-                                                    <button class="btn btn-outline-primary" type="button">+ Add</button>
+                                                        placeholder="Add new Colour" id="clr_input" />
+                                                    <button class="btn btn-outline-primary" type="button" onclick="saveclr();">+ Add</button>
                                                 </div>
                                             </div>
                                         </div>
