@@ -43,7 +43,7 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <select class="form-select text-center">
+                                            <select class="form-select text-center" onchange="loadBrands();" id="category">
                                                 <option value="0">Select Category</option>
                                                 
                                                 <?php
