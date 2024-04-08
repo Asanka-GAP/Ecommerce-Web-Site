@@ -261,18 +261,38 @@ function updateProfile(){
 
 function loadBrands(){
   var cid = document.getElementById("category").value;
-  alert("ok");
-
+  
   var request = new XMLHttpRequest();
 
   request.onreadystatechange = function(){
     if (request.status == 200 && request.readyState==4) {
       var response = request.responseText;
+
+      document.getElementById("brand").innerHTML=response;
       
     }
   }
 
   request.open("GET","loadBrandProcess.php?cid="+cid,true);
+  request.send();
+
+}
+
+function loadmodels(){
+  var bid = document.getElementById("brand").value;
+
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function(){
+    if (request.status == 200 && request.readyState == 4) {
+      var response = request.responseText;
+
+      document.getElementById("model").innerHTML=response;
+      
+    }
+  }
+
+  request.open("GET","loadModelsProcess.php?bid="+bid,true);
   request.send();
 
 }
