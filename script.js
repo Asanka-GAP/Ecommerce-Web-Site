@@ -306,7 +306,11 @@ function saveclr(){
   request.onreadystatechange = function(){
     if (request.status == 200 & request.readyState == 4) {
       var response = request.responseText;
-      alert(response);
+      if (response == "saved") {
+        window.location.reload();
+      }else{
+        alert(response);
+      }
     }
   }
 
