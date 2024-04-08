@@ -27,7 +27,7 @@
                 ?>
 
                     <span class="text-lg-start text-success"><b>Hi&nbsp;</b><?php echo $data["fname"]; ?></span>
-                    <span class="text-lg-start fw-bold text-danger signout" onclick="signout();">Signout</span>
+                    <span class="text-lg-start fw-bold text-danger signout" onclick="signout();"> | Signout</span>
                 <?php
                 } else {
                 ?>
