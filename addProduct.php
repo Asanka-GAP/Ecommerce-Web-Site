@@ -334,7 +334,7 @@
                                         </div>
                                     </div>
                                     <div class="offset-lg-3 col-12 col-lg-6 d-grid mt-3">
-                                        <input type="file" class="d-none" multiple />
+                                        <input type="file" class="d-none" multiple id="imageuploader" />
                                         <label for="" class="col-12 btn btn-primary">Upload Images</label>
                                     </div>
                                 </div>
@@ -353,7 +353,7 @@
                             </div>
 
                             <div class="offset-lg-4 col-12 col-lg-4 d-grid mt-3 mb-3">
-                                <button class="btn btn-success">Save Product</button>
+                                <button class="btn btn-success" onclick="addproduct();">Save Product</button>
                             </div>
 
                         </div>

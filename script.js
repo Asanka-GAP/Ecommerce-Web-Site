@@ -319,3 +319,61 @@ function saveclr(){
   request.send();
 
 }
+
+function addproduct(){
+  
+  var category = document.getElementById("category");
+  var brand = document.getElementById("brand");
+  var model = document.getElementById("model");
+  var title = document.getElementById("title");
+
+  var condition = 0;
+
+  if(document.getElementById("b").checked){
+    condition = 1;
+  }else if(document.getElementById("u").checked){
+    condition = 2;
+  }
+
+  var clr = document.getElementById("clr");
+  var qty = document.getElementById("qty");
+  var cost = document.getElementById("cost");
+  var dwc = document.getElementById("dwc");
+  var doc = document.getElementById("doc");
+  var desc = document.getElementById("desc");
+  var image = document.getElementById("imageuploader");
+
+  var form = new FormData();
+  form.append("ca",category.value);
+  form.append("b",brand.value);
+  form.append("m",model.value);
+  form.append("t",title.value);
+  form.append("con",condition);
+  form.append("col",clr.value);
+  form.append("q",qty.value);
+  form.append("co",cost.value);
+  form.append("dwc",dwc.value);
+  form.append("doc",doc.value);
+  form.append("desc",desc.value);
+  
+  var form_count = image.files.length;
+
+  for (let index = 0; index < form_count; index++) {
+    form.append("image"+index,image.files[index]);
+
+  }
+
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function(){
+
+    if (request.status == 200 && request.readyState == 4) {
+      var response = request.responseText;
+      alert(response);
+    }
+  }
+
+  request.open("POST","addNewProductProcess.php",true);
+  request.send(form);
+
+}
