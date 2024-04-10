@@ -49,7 +49,44 @@
     
     $product_id = Database::$connection->insert_id;
 
-    
+    $length = sizeof($_FILES);
+    if ($length<=3 && $length>0) {
+        
+        $allowed_img_extensions = array("image/jpeg","image/png","image/svg+xml");
+        
+        for ($i=0; $i <$length ; $i++) { 
+            if (isset($_FILES["image".$i])) {
+                
+                $image_file = $_FILES["image".$i];
+                $img_type = $image_file["type"];
+
+                if (in_array($img_type,$allowed_img_extensions)) {
+
+                    $new_img_extension;
+
+                if($img_type == "image/jpeg"){
+                    $new_img_extension = ".jpeg";
+                }else if($img_type == "image/png"){
+                    $new_img_extension = ".png";
+                }else if($img_type == "image/svg+xml"){
+                    $new_img_extension = ".svg";
+                }
+
+                $file_name = "resources//mobile_images//".$title."_".$i."_".uniqid().$new_img_extension;
+                move_uploaded_file($image_file["tmp_name"],$file_name);
+
+                Database::iud("INSERT INTO `product_img`(`path`,`product_id`) VALUES ('".$file_name."','".$product_id."')");
+                
+                    
+                }else {
+                    echo("Invalid image type");
+                }
+            }
+        }
+        
+    }else{
+        echo("Invalid Image Count");
+    }
     
     
 

@@ -377,3 +377,29 @@ function addproduct(){
   request.send(form);
 
 }
+
+function changeProductImg(){
+
+  var image = document.getElementById("imageuploader");
+
+  image.onchange = function(){
+
+    var length = image.files.length;
+
+    if(length<=3 && length>0){
+
+     for (let index = 0; index < length; index++) {
+        var file = this.files[index];
+        var url = window.URL.createObjectURL(file);
+
+        document.getElementById("i"+index).src = url;
+     }
+
+
+    }else{
+      alert("You have uploaded "+length+"files. You are only proceed to upload 3 or less than 3 files.");
+    }
+
+  }
+
+}
