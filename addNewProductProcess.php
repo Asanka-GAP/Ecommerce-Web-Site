@@ -77,6 +77,7 @@
 
                 Database::iud("INSERT INTO `product_img`(`path`,`product_id`) VALUES ('".$file_name."','".$product_id."')");
                 
+                echo("success");
                     
                 }else {
                     echo("Invalid image type");

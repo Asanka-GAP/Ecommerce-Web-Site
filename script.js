@@ -369,7 +369,13 @@ function addproduct(){
 
     if (request.status == 200 && request.readyState == 4) {
       var response = request.responseText;
-      alert(response);
+
+      if (response == "success") {
+        window.location.reload();
+      }else{
+        alert(response);
+      }
+      
     }
   }
 
