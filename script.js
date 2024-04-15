@@ -409,3 +409,9 @@ function changeProductImg(){
   }
 
 }
+
+function sendId(){
+
+  window.location = "updateProduct.php";
+
+}
