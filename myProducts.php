@@ -263,8 +263,17 @@ if (isset($_SESSION["u"])) {
                                                                 ?> checked <?php
                                                                  } 
                                                                  ?> />
-                                                        <label class="form-check-label fw-bold text-info" for="">Make
-                                                            Your Product Deactive</label>
+                                                        <label class="form-check-label fw-bold text-info"
+                                                            for="toggle<?php echo $selected_data["id"];?>">
+                                                            <?php
+                                                            if($selected_data["status_status_id"] == 1){
+                                                                echo("Make Your Product Deactive"); 
+                                                            }else{
+                                                                echo ("Make Your Product Active");
+                                                            }
+                                                                
+                                                                
+                                                                ?> </label>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-12">
@@ -293,15 +302,27 @@ if (isset($_SESSION["u"])) {
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination pagination-lg justify-content-center">
                                         <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
+                                            <a class="page-link" href="<?php 
+                                            if($pageno<=1){
+                                                echo("#");
+                                            }else{
+                                                echo "?page=".($pageno-1) ; 
+                                            }
+                                            ?>" aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         </li>
                                         <li class="page-item active">
-                                            <a class="page-link" href="#">01</a>
+                                            <a class="page-link" href="">01</a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
+                                            <a class="page-link" href="<?php 
+                                            if($pageno>=$num_of_pages){
+                                                echo("#");
+                                            }else{
+                                                echo "?page=".($pageno+1) ; 
+                                            }
+                                            ?>" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
                                             </a>
                                         </li>
