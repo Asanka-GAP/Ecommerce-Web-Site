@@ -415,3 +415,22 @@ function sendId(){
   window.location = "updateProduct.php";
 
 }
+
+function changeStatus(id){
+  var product_id = id;
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function(){
+    if(request.status == 200 && request.readyState == 4){
+      var response = request.responseText;
+      if (response == "deactivated" || response == "activated") {
+        window.location.reload();
+      }else{
+        alert(response);
+      }
+    }
+  }
+
+  request.open("GET","changeStatusProcess.php?id="+product_id,true);
+  request.send();
+}

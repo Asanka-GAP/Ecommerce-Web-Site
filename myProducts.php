@@ -256,7 +256,9 @@ if (isset($_SESSION["u"])) {
                                                         Items
                                                         left</span>
                                                     <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch"
+                                                        <input
+                                                            onchange="changeStatus(<?php echo $selected_data["id"];?>);"
+                                                            class="form-check-input" type="checkbox" role="switch"
                                                             id="toggle<?php echo $selected_data["id"];?>" <?php 
                                                             if($selected_data["status_status_id"] == 2)
                                                             {
@@ -312,9 +314,23 @@ if (isset($_SESSION["u"])) {
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         </li>
+                                        <?php
+                                        for ($i=1; $i <=$num_of_pages ; $i++) { 
+                                            if ($i==$pageno) {
+                                                ?>
                                         <li class="page-item active">
-                                            <a class="page-link" href="">01</a>
+                                            <a class="page-link" href="<?php echo "?page=".($i)?>"><?php echo $i;?></a>
                                         </li>
+                                        <?php
+                                        }else {
+                                            ?>
+                                        <li class="page-item">
+                                            <a class="page-link" href="<?php echo "?page=".($i)?>"><?php echo $i;?></a>
+                                        </li>
+                                        <?php
+                                        }
+                                        }
+                                        ?>
                                         <li class="page-item">
                                             <a class="page-link" href="<?php 
                                             if($pageno>=$num_of_pages){
