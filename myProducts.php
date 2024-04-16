@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+include "connection.php";
+
+if (isset($_SESSION["u"])) {
+   $email = $_SESSION["u"]["email"];
+   $pageno;
+   
+   ?>
 <!DOCTYPE html>
 
 <html>
@@ -192,7 +202,8 @@
                                                     <h5 class="card-title fw-bold">Apple iPhone 12</h5>
                                                     <span class="card-text fw-bold text-primary">Rs. 100000
                                                         .00</span><br />
-                                                    <span class="card-text fw-bold text-success">10 Items left</span>
+                                                    <span class="card-text fw-bold text-success">10 Items
+                                                        left</span>
                                                     <div class="form-check form-switch">
                                                         <input class="form-check-input" type="checkbox" role="switch" />
                                                         <label class="form-check-label fw-bold text-info" for="">Make
@@ -251,3 +262,11 @@
 </body>
 
 </html>
+
+<?php
+
+}else {
+header("Location:Home.php");
+}
+
+?>
