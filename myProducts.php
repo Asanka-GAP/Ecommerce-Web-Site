@@ -37,16 +37,37 @@ if (isset($_SESSION["u"])) {
                     <div class="col-12 col-lg-4">
                         <div class="row">
                             <div class="col-12 col-lg-4 mt-1 mb-1 text-center">
-                                <img src="resources/new_user.svg" width="90px" height="90px" class="rounded-circle" />
+                                <?php
+                                $img_rs = Database::search("SELECT * FROM `profile_img` WHERE `user_email`='".$email."'");
+                                $img_num = $img_rs->num_rows;
+
+                                if ($img_num==1) {
+                                    $img_data=$img_rs->fetch_assoc();
+                                    ?>
+                                <img src="<?php echo $img_data["path"]?>" width="90px" height="90px"
+                                    class="rounded-circle" />
+
+                                <?php
+                                }else {
+                                    ?>
+                                <img src=" resources/new_user.svg" width="90px" height="90px" class="rounded-circle" />
+
+                                <?php
+                                }
+                                ?>
 
                             </div>
                             <div class="col-12 col-lg-8">
                                 <div class="row text-center text-lg-start">
                                     <div class="col-12 mt-0 mt-lg-4">
-                                        <span class="text-white fw-bold">Sahan Perera</span>
+
+                                        <span class="text-white fw-bold">
+                                            <?php echo $_SESSION["u"]["fname"]." ".$_SESSION["u"]["lname"]?></span>
                                     </div>
                                     <div class="col-12">
-                                        <span class="text-black-50 fw-bold">sahan@gmail.com</span>
+                                        <span class="text-black-50 fw-bold">
+                                            <?php echo $email?>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -189,6 +210,28 @@ if (isset($_SESSION["u"])) {
                             <div class="offset-1 col-10 text-center">
                                 <div class="row justify-content-center">
 
+                                    <?php
+                                    
+                                        if(isset($_GET["page"])){
+                                            $pageno = $_GET["page"];
+                                        }else{
+                                            $pageno = 1;
+                                        }
+
+                                        $product_rs = Database::search("SELECT * FROM `product` WHERE `user_email`='".$email."'");
+                                        $product_num = $product_rs->num_rows;
+
+                                        $results_per_page = 5;
+                                        $num_of_pages = ceil($product_num/$results_per_page);
+                                        $page_results = ($pageno - 1) * $results_per_page;
+
+                                        $selected_rs = Database::search("SELECT * FROM `product` WHERE `user_email`='".$email."' LIMIT ".$results_per_page." OFFSET ".$page_results."");
+                                        
+                                        $selected_num = $selected_rs->num_rows;
+                                        
+                                        for ($i=0; $i <$selected_num ; $i++) { 
+                                            $selected_data = $selected_rs->fetch_assoc();
+                                            ?>
                                     <!-- card -->
                                     <div class="card mb-3 mt-3 col-12 col-lg-6">
                                         <div class="row">
@@ -224,6 +267,13 @@ if (isset($_SESSION["u"])) {
                                         </div>
                                     </div>
                                     <!-- card -->
+                                    <?php
+                                    }
+
+
+                                    ?>
+
+
                                 </div>
                             </div>
 
