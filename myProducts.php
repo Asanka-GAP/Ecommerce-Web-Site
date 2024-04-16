@@ -236,19 +236,33 @@ if (isset($_SESSION["u"])) {
                                     <div class="card mb-3 mt-3 col-12 col-lg-6">
                                         <div class="row">
                                             <div class="col-md-4 mt-4">
-
-                                                <img src="resources/mobile_images/iphone12.jpg"
+                                                <?php
+                                                
+                                                $product_img_rs = Database::search("SELECT * FROM `product_img` WHERE `product_id`='".$selected_data["id"]."'");
+                                                $product_img_data = $product_img_rs->fetch_assoc();
+                                                
+                                                ?>
+                                                <img src="<?php echo $product_img_data["path"];?>"
                                                     class="img-fluid rounded-start" />
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="card-body">
-                                                    <h5 class="card-title fw-bold">Apple iPhone 12</h5>
-                                                    <span class="card-text fw-bold text-primary">Rs. 100000
-                                                        .00</span><br />
-                                                    <span class="card-text fw-bold text-success">10 Items
+                                                    <h5 class="card-title fw-bold">
+                                                        <?php echo $selected_data["title"]?></h5>
+                                                    <span
+                                                        class="card-text fw-bold text-primary"><?php echo $selected_data["price"]?></span><br />
+                                                    <span
+                                                        class="card-text fw-bold text-success"><?php echo $selected_data["qty"]?>
+                                                        Items
                                                         left</span>
                                                     <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" />
+                                                        <input class="form-check-input" type="checkbox" role="switch"
+                                                            id="toggle<?php echo $selected_data["id"];?>" <?php 
+                                                            if($selected_data["status_status_id"] == 2)
+                                                            {
+                                                                ?> checked <?php
+                                                                 } 
+                                                                 ?> />
                                                         <label class="form-check-label fw-bold text-info" for="">Make
                                                             Your Product Deactive</label>
                                                     </div>
@@ -272,12 +286,10 @@ if (isset($_SESSION["u"])) {
 
 
                                     ?>
-
-
                                 </div>
                             </div>
 
-                            <div class="offset-2 offset-lg-3 col-8 col-lg-6 text-center mb-3">
+                            <div class=" offset-2 offset-lg-3 col-8 col-lg-6 text-center mb-3">
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination pagination-lg justify-content-center">
                                         <li class="page-item">
