@@ -154,7 +154,8 @@
                         <a href="#" class="text-decoration-none text-dark fs-3 fw-bold">
                             <?php echo $category_data2["cat_name"]; ?>
                         </a> &nbsp;&nbsp;
-                        <a href="#" class="text-decoration-none text-dark fs-6">See All &nbsp;&rarr;</a>
+                        <a href="seeall.php?pid=<?php echo $category_data["cat_id"];?>"
+                            class="text-decoration-none text-dark fs-6">See All &nbsp;&rarr;</a>
                     </div>
 
                     <!-- Category Name -->
@@ -180,7 +181,7 @@
 
                                         ?>
 
-                                    <div class="card col-6 col-lg-2 mt-2 mb-2" style="width: 18rem;">
+                                    <div class=" card col-6 col-lg-2 mt-2 mb-2" style="width: 18rem;">
 
                                         <img src="<?php echo $product_data["path"]; ?>"
                                             class="card-img-top img-thumbnail mt-2" style="height: 180px;" />
