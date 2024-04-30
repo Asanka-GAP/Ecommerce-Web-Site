@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="bootstrap.css" />
     <link rel="stylesheet" href="style.css" />
 
-    <link rel="icon" href="resource/logo.svg" />
+    <link rel="icon" href="resources/logo.svg" />
 
 </head>
 
@@ -130,12 +130,14 @@
                             </div>
 
                             <?php
+
                             $email = "";
                             $password = "";
 
                             if (isset($_COOKIE["email"])) {
                                 $email = $_COOKIE["email"];
                             }
+
                             if (isset($_COOKIE["password"])) {
                                 $password = $_COOKIE["password"];
                             }
@@ -175,8 +177,7 @@
 
             <!-- content -->
 
-            <!-- model -->
-
+            <!-- modal -->
             <div class="modal" tabindex="-1" id="fpmodal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -190,26 +191,24 @@
                                 <div class="col-6">
                                     <label class="form-label">New Password</label>
                                     <div class="input-group mb-3">
-                                        <input type="password" id="np" class="form-control"/>
-                                        <button class="btn btn-outline-secondary" id="rnb" onclick="showPassword();">Show</button>
+                                        <input type="password" class="form-control" id="np"/>
+                                        <button id="npb" class="btn btn-outline-secondary" onclick="showPassword();">Show</button>
                                     </div>
                                 </div>
 
                                 <div class="col-6">
                                     <label class="form-label">Re-Type New Password</label>
                                     <div class="input-group mb-3">
-                                        <input type="password" id="rnp" class="form-control"/>
-                                        <button class="btn btn-outline-secondary" id="rnbp" onclick="showPassword2();">Show</button>
+                                        <input type="password" class="form-control" id="rnp"/>
+                                        <button class="btn btn-outline-secondary" id="rnpb" onclick="showPassword2();">Show</button>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <label class="form-label">Verification Code</label>
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" id="vcode"/>
-                                    </div>
+                                    <input type="text" class="form-control" id="vcode"/>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -219,12 +218,11 @@
                     </div>
                 </div>
             </div>
-
-            <!-- model -->
+            <!-- modal -->
 
             <!-- footer -->
             <div class="col-12 fixed-bottom d-none d-lg-block">
-                <p class="text-center">&copy; 2022 eShop.lk || All Rights Reserved</p>
+                <p class="text-center">&copy; 2024 eShop.lk || All Rights Reserved</p>
             </div>
             <!-- footer -->
 

@@ -23,14 +23,17 @@
     <div class="container-fluid">
         <div class="row">
 
-
             <?php
+
             include "header.php";
             include "connection.php";
 
             if (isset($_SESSION["u"])) {
+
                 $email = $_SESSION["u"]["email"];
+
             ?>
+
                 <div class="col-12 bg-primary">
                     <div class="row">
 
@@ -42,25 +45,22 @@
 
                                         <?php
 
-                                        $img_rs = Database::search("SELECT * FROM `profile_img` WHERE `user_email` = '" . $email . "'");
+                                        $img_rs = Database::search("SELECT * FROM `profile_img` WHERE `user_email`='" . $email . "'");
                                         $img_data = $img_rs->fetch_assoc();
 
                                         if (empty($img_data["path"])) {
-
                                         ?>
                                             <img src="resources/new_user.svg" id="img" class="rounded mt-5" style="width: 150px;" />
-
                                         <?php
                                         } else {
                                         ?>
                                             <img src="<?php echo $img_data["path"]; ?>" id="img" class="rounded mt-5" style="width: 150px;" />
-
                                         <?php
                                         }
+
                                         ?>
 
-
-                                        <span class="fw-bold"><?php echo $_SESSION["u"]["fname"] . " " . $_SESSION["u"]["lname"]; ?></span>
+                                        <span class="fw-bold"><?php echo  $_SESSION["u"]["fname"] . " " . $_SESSION["u"]["lname"]; ?></span>
                                         <span class="fw-bold text-black-50"><?php echo $email; ?></span>
 
                                         <input type="file" class="d-none" id="profileimage" />
@@ -80,23 +80,23 @@
 
                                             <div class="col-6">
                                                 <label class="form-label">First Name</label>
-                                                <input type="text" id="fname" class="form-control" value="<?php echo $_SESSION["u"]["fname"] ?>" />
+                                                <input id="fname" type="text" class="form-control" value="<?php echo  $_SESSION["u"]["fname"]; ?>" />
                                             </div>
 
                                             <div class="col-6">
                                                 <label class="form-label">Last Name</label>
-                                                <input type="text" id="lname" class="form-control" value="<?php echo $_SESSION["u"]["lname"] ?>" />
+                                                <input id="lname" type="text" class="form-control" value="<?php echo $_SESSION["u"]["lname"]; ?>" />
                                             </div>
 
                                             <div class="col-12">
                                                 <label class="form-label">Mobile</label>
-                                                <input type="text" id="mobile" class="form-control" value="<?php echo $_SESSION["u"]["mobile"] ?>" />
+                                                <input id="mobile" type="text" class="form-control" value="<?php echo $_SESSION["u"]["mobile"]; ?>" />
                                             </div>
 
                                             <div class="col-12">
                                                 <label class="form-label">Password</label>
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" id="pf" value="<?php echo $_SESSION["u"]["password"] ?>" readonly />
+                                                    <input id="user_password" type="password" class="form-control" value="<?php echo $_SESSION["u"]["password"]; ?>" readonly />
                                                     <span class="input-group-text bg-primary" id="basic-addon2" onclick="showPassword3();">
                                                         <i class="bi bi-eye-slash-fill text-white" id="basic-addon2_i"></i>
                                                     </span>
@@ -105,12 +105,12 @@
 
                                             <div class="col-12">
                                                 <label class="form-label">Email</label>
-                                                <input type="text" class="form-control" readonly value="<?php echo $email ?>" />
+                                                <input type="text" class="form-control" readonly value="<?php echo $email; ?>" />
                                             </div>
 
                                             <div class="col-12">
                                                 <label class="form-label">Registered Date</label>
-                                                <input type="text" class="form-control" readonly value="<?php echo $_SESSION["u"]["joined_date"] ?>" />
+                                                <input type="text" class="form-control" readonly value="<?php echo $_SESSION["u"]["joined_date"]; ?>" />
                                             </div>
 
                                             <?php
@@ -122,43 +122,43 @@
 
                                             $address_data = $address_rs->fetch_assoc();
 
-
-
                                             ?>
+
                                             <div class="col-12">
                                                 <label class="form-label">Address Line 01</label>
                                                 <?php
+
                                                 if (empty($address_data["line1"])) {
                                                 ?>
-                                                    <input type="text" id="line1" class="form-control" />
+                                                    <input id="line1" type="text" class="form-control" />
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <input type="text" id="line1" class="form-control" value="<?php echo $address_data["line1"]; ?>" />
+                                                    <input id="line1" type="text" class="form-control" value="<?php echo $address_data["line1"]; ?>" />
                                                 <?php
                                                 }
+
                                                 ?>
 
                                             </div>
-
-
 
                                             <div class="col-12">
                                                 <label class="form-label">Address Line 02</label>
-
                                                 <?php
+
                                                 if (empty($address_data["line2"])) {
                                                 ?>
-                                                    <input type="text" id="line2" class="form-control" />
+                                                    <input id="line2" type="text" class="form-control" />
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <input type="text" id="line2" class="form-control" value="<?php echo $address_data["line2"]; ?>" />
+                                                    <input id="line2" type="text" class="form-control" value="<?php echo $address_data["line2"]; ?>" />
                                                 <?php
                                                 }
-                                                ?>
 
+                                                ?>
                                             </div>
+
                                             <?php
 
                                             $province_rs = Database::search("SELECT * FROM `province`");
@@ -172,22 +172,23 @@
                                                 <select class="form-select" id="province">
                                                     <option value="0">Select Province</option>
                                                     <?php
-                                                    for ($i = 0; $i < $province_rs->num_rows; $i++) {
+
+                                                    for ($x = 0; $x < $province_rs->num_rows; $x++) {
                                                         $province_data = $province_rs->fetch_assoc();
                                                     ?>
                                                         <option value="<?php echo $province_data["province_id"]; ?>" <?php
-                                                        if(!empty($address_data["province_id"])){
-                                                            if($address_data["province_id"] == $province_data["province_id"]){
-                                                                ?>selected<?php
-                                                            }
-                                                        }
-                                                        ?>>
+                                                                                                                        if (!empty($address_data["province_id"])) {
+                                                                                                                            if ($address_data["province_id"] == $province_data["province_id"]) {
+                                                                                                                        ?>selected<?php
+                                                                                                                            }
+                                                                                                                        }
+                                                                            ?>>
                                                             <?php echo $province_data["province_name"]; ?>
                                                         </option>
                                                     <?php
                                                     }
-                                                    ?>
 
+                                                    ?>
                                                 </select>
                                             </div>
 
@@ -196,21 +197,24 @@
                                                 <select class="form-select" id="district">
                                                     <option value="0">Select District</option>
                                                     <?php
-                                                    for ($i = 0; $i < $district_rs->num_rows; $i++) {
+
+                                                    for ($x = 0; $x < $district_rs->num_rows; $x++) {
                                                         $district_data = $district_rs->fetch_assoc();
                                                     ?>
                                                         <option value="<?php echo $district_data["district_id"]; ?>" <?php
-                                                        if(!empty($address_data["district_id"])){
-                                                            if($address_data["district_id"] == $district_data["district_id"]){
-                                                                ?>selected<?php
-                                                            }
-                                                        }
-                                                        ?>>
+                                                                                                                        if (!empty($address_data["district_id"])) {
+                                                                                                                            if ($address_data["district_id"] == $district_data["district_id"]) {
+                                                                                                                        ?>selected<?php
+                                                                                                                            }
+                                                                                                                        }
+                                                                            ?>>
                                                             <?php echo $district_data["district_name"]; ?>
                                                         </option>
                                                     <?php
                                                     }
+
                                                     ?>
+
                                                 </select>
                                             </div>
 
@@ -219,41 +223,51 @@
                                                 <select class="form-select" id="city">
                                                     <option value="0">Select City</option>
                                                     <?php
-                                                    for ($i = 0; $i < $city_rs->num_rows; $i++) {
+
+                                                    for ($x = 0; $x < $city_rs->num_rows; $x++) {
                                                         $city_data = $city_rs->fetch_assoc();
                                                     ?>
                                                         <option value="<?php echo $city_data["city_id"]; ?>" <?php
-                                                        if(!empty($address_data["city_id"])){
-                                                            if($address_data["city_id"] == $city_data["city_id"]){
-                                                                ?>selected<?php
-                                                            }
-                                                        }
-                                                        ?>>
+                                                                                                                        if (!empty($address_data["city_id"])) {
+                                                                                                                            if ($address_data["city_id"] == $city_data["city_id"]) {
+                                                                                                                        ?>selected<?php
+                                                                                                                            }
+                                                                                                                        }
+                                                                            ?>>
                                                             <?php echo $city_data["city_name"]; ?>
                                                         </option>
                                                     <?php
                                                     }
+
                                                     ?>
+
                                                 </select>
                                             </div>
 
                                             <div class="col-6">
                                                 <label class="form-label">Postal Code</label>
                                                 <?php
-                                                if(empty($address_data["postal_code"])){
-                                                    ?><input type="text" id="pcode" class="form-control" /><?php
-                                                }else{
-                                                    ?><input type="text" id="pcode" class="form-control" value="<?php echo $address_data["postal_code"] ?>"/><?php
-                                                }
+
+                                                if (empty($address_data["postal_code"])) {
                                                 ?>
-                                                
+                                                    <input id="pcode" type="text" class="form-control" />
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <input id="pcode" type="text" class="form-control" value="<?php echo $address_data["postal_code"]; ?>" />
+                                                <?php
+                                                }
+
+                                                ?>
                                             </div>
 
                                             <div class="col-12">
                                                 <label class="form-label">Gender</label>
                                                 <?php
-                                                $gender_rs = Database::search("SELECT * FROM `gender` WHERE `id`= '".$_SESSION["u"]["gender_id"]."'");
+                                                
+                                                $gender_rs = Database::search("SELECT * FROM `gender` WHERE `id`='".$_SESSION["u"]["gender_id"]."'");
                                                 $gender_data = $gender_rs->fetch_assoc();
+                                                
                                                 ?>
                                                 <input type="text" class="form-control" value="<?php echo $gender_data["gender_name"]; ?>" readonly />
                                             </div>
@@ -280,8 +294,10 @@
                 </div>
 
             <?php
+
             } else {
             ?>
+
                 <script>
                     alert("You need to Login first");
                     window.location = "home.php";
@@ -293,7 +309,6 @@
             ?>
 
             <?php include "footer.php"; ?>
-
 
         </div>
     </div>

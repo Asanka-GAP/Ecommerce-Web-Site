@@ -17,25 +17,29 @@
     <div class="col-12">
         <div class="row mt-1 mb-1">
 
-
             <div class="offset-lg-1 col-12 col-lg-3 align-self-start mt-2">
 
-                <?php
-                session_start();
-                if (isset($_SESSION["u"])) {
-                    $data = $_SESSION["u"];
+            <?php
+            
+            session_start();
+
+            if(isset($_SESSION["u"])){
+                $data = $_SESSION["u"];
                 ?>
 
-                    <span class="text-lg-start text-success"><b>Hi&nbsp;</b><?php echo $data["fname"]; ?></span>
-                    <span class="text-lg-start fw-bold text-danger signout" onclick="signout();"> | Signout</span>
-                <?php
-                } else {
-                ?>
-                    <a href="index.php" class="text-decoration-none fw-bold">Sign In or Register</a>
-                <?php
-                }
+                <span class="text-lg-start text-success"><b>Hi </b><?php echo $data["fname"]; ?></span> |
+                <span class="text-lg-start fw-bold text-danger signout" onclick="signout();">Signout</span> |
 
-                ?> |
+                <?php
+            }else{
+
+                ?>
+                <a href="index.php" class="text-decoration-none fw-bold">Sign In or Register</a> |
+                <?php
+
+            }
+            
+            ?>
                 <span class="text-lg-start fw-bold">Help and Contact</span>
 
             </div>
@@ -54,7 +58,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="userProfile.php">My Profile</a></li>
                             <li><a class="dropdown-item" href="#">My Sellings</a></li>
-                            <li><a class="dropdown-item" href="#">My Products</a></li>
+                            <li><a class="dropdown-item" href="myProducts.php">My Products</a></li>
                             <li><a class="dropdown-item" href="#">Watchlist</a></li>
                             <li><a class="dropdown-item" href="#">Purchase History</a></li>
                             <li><a class="dropdown-item" href="#">Messages</a></li>

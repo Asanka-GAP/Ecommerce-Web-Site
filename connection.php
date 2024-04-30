@@ -1,6 +1,6 @@
 <?php
 
-class Database{
+class Database{// for create object
 
     public static $connection;
 
