@@ -435,11 +435,6 @@ function changeStatus(id){
     
 }
 
-
-function sendId(){
-    window.location = "updateProduct.php";
-}
-
 function sort1(x){
 
     var search= document.getElementById("s");
@@ -486,5 +481,49 @@ function sort1(x){
     request.open("POST","sortProcess.php",true);
     request.send(form);
 
+}
+
+function clearSort(){
+    window.location.reload();
+}
+
+function sendId(id){
+    window.location = "updateProduct.php?id="+id;
+}
+
+function updateProduct(id){
+
+    var title = document.getElementById("t");
+    var qty = document.getElementById("q");
+    var dwc = document.getElementById("dwc");
+    var doc = document.getElementById("doc");
+    var description = document.getElementById("d");
+    var images = document.getElementById("imageuploader");
+    var pid = id;
+
+    var form = new FormData();
+    form.append("t",title.value);
+    form.append("q",qty.value);
+    form.append("d1",dwc.value);
+    form.append("d2",doc.value);
+    form.append("d3",description.value);
+    form.append("p",pid);
+
+    var img_count = images.files.length;
+    for(var x = 0;x < img_count;x++){
+        form.append("i"+x,images.files[x]);
+    }
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function (){
+        if(request.status == 200 && request.readyState == 4){
+            var response = request.responseText;
+            alert(response);
+        }
+    }
+
+    request.open("POST","updateProductProcess.php",true);
+    request.send(form);
 
 }

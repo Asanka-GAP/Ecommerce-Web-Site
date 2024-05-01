@@ -185,7 +185,7 @@ if (isset($_SESSION["u"])) {
                                                     <button class="btn btn-success fw-bold" onclick="sort1(0);">Sort</button>
                                                 </div>
                                                 <div class="col-12 col-lg-6 d-grid">
-                                                    <button class="btn btn-primary fw-bold">Clear</button>
+                                                    <button class="btn btn-primary fw-bold" onclick="clearSort();">Clear</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -267,7 +267,8 @@ if (isset($_SESSION["u"])) {
                                                                 <div class="col-12">
                                                                     <div class="row g-1">
                                                                         <div class="col-12 d-grid">
-                                                                            <button class="btn btn-success fw-bold" onclick="sendId();">Update</button>
+                                                                            <button class="btn btn-success fw-bold" 
+                                                                            onclick="sendId(<?php echo $selected_data['id']; ?>);">Update</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
