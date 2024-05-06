@@ -519,7 +519,13 @@ function updateProduct(id){
     request.onreadystatechange = function (){
         if(request.status == 200 && request.readyState == 4){
             var response = request.responseText;
-            alert(response);
+            if (response=="Product Updated.") {
+                alert("Product Updated.");
+                window.location = "myProducts.php";
+            }else{
+                alert(response);
+            }
+            
         }
     }
 
