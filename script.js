@@ -533,3 +533,24 @@ function updateProduct(id){
     request.send(form);
 
 }
+
+function basicSearch(x){
+    
+ var txt = document.getElementById("basic_search_txt");
+ var select = document.getElementById("basic_search_select");
+
+ var form = new FormData();
+ form.append("t",txt.value);
+ form.append("s",select.value);
+ form.append("page",x);
+
+ var request = new XMLHttpRequest();
+ request.onreadystatechange = function(){
+    if(request.status == 200 && request.readyState == 4){
+        var response = request.responseText;
+        alert(response);
+    }
+ }
+ request.open("POST","basicSearchProcess.php",true);
+ request.send(form);
+}
