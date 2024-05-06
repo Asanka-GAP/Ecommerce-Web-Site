@@ -535,7 +535,7 @@ function updateProduct(id){
 }
 
 function basicSearch(x){
-    
+
  var txt = document.getElementById("basic_search_txt");
  var select = document.getElementById("basic_search_select");
 
@@ -548,7 +548,7 @@ function basicSearch(x){
  request.onreadystatechange = function(){
     if(request.status == 200 && request.readyState == 4){
         var response = request.responseText;
-        alert(response);
+        document.getElementById("basicSearchResult").innerHTML = response;
     }
  }
  request.open("POST","basicSearchProcess.php",true);
