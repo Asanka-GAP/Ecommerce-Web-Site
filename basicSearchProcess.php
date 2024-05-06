@@ -65,36 +65,18 @@ if (!empty($txt) && $select == 0) {
                                 .00</span><br />
                             <span class="card-text fw-bold text-success"><?php echo $selected_data["qty"]; ?> Items
                                 left</span>
-                            <div class="form-check form-switch">
-                                <input onchange="changeStatus(<?php echo $selected_data['id']; ?>);"
-                                    class="form-check-input" type="checkbox" role="switch"
-                                    id="toggle<?php echo $selected_data["id"]; ?>"
-                                    <?php
-                                                                                                                                                                                                            if ($selected_data["status_status_id"] == 2) {
-                                                                                                                                                                                                            ?>
-                                    checked
-                                    <?php
-                                                                                                                                                                                                            }
-                                                                                                                                                                                            ?> />
-                                <label class="form-check-label fw-bold text-info"
-                                    for="toggle<?php echo $selected_data["id"]; ?>">
-                                    <?php
 
-                                    if ($selected_data["status_status_id"] == 1) {
-                                        echo ("Make Your Product Deactive.");
-                                    } else {
-                                        echo ("Make Your Product Active.");
-                                    }
-
-                                    ?>
-
-                                </label>
-                            </div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row g-1">
+                                        <div class="col-6 d-grid">
+                                            <button class="btn btn-success fw-bold">Buy Now</button>
+                                        </div>
+                                        <div class="col-6 d-grid">
+                                            <button class="btn btn-warning fw-bold">Add to Cart</button>
+                                        </div>
                                         <div class="col-12 d-grid">
-                                            <button class="btn btn-success fw-bold" onclick="sendId();">Update</button>
+                                            <button class="btn btn-secondary fw-bold">Add to Watchlist</button>
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +96,7 @@ if (!empty($txt) && $select == 0) {
         </div>
     </div>
 
-    <div class="offset-2 offset-lg-3 col-8 col-lg-6 text-center mb-3">
+    <div class=" offset-2 offset-lg-3 col-8 col-lg-6 text-center mb-3">
         <nav aria-label="Page navigation example">
             <ul class="pagination pagination-lg justify-content-center">
                 <li class="page-item">
